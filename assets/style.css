@@ -1,3 +1,15 @@
-.highscore {
-  width: 40%;
+header {
+  display: flex;
+}
+
+.time {
+  margin-left: auto;
+}
+
+.homescreen {
+  margin-top: 1em;
+}
+
+.questions {
+  margin-top: 1em;
 }
