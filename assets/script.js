@@ -7,6 +7,7 @@ var questionView = document.querySelector('#questionview');
 var homeScreenSection = document.querySelector('#homescreen');
 var highScoreSection = document.querySelector('#highscoreinput');
 var highscores = document.querySelector('#highscores');
+var highscore = document.querySelector('#highscore');
 var secondsLeft = 20;
 var currentQuestion;
 var index = 1;
@@ -31,14 +32,21 @@ var question2 = {
 // array of questions
 var questions = [question1, question2];
 
+
 // timer function
 startEl.addEventListener('click', function() {
   setTime();
+
   questionEl.textContent = question1.question;
   choiceA.textContent = question1.answerChoices[0];
   choiceB.textContent = question1.answerChoices[1];
   choiceC.textContent = question1.answerChoices[2];
   choiceD.textContent = question1.answerChoices[3];
+
+  choiceA.removeAttribute('class', 'hide');
+  choiceB.removeAttribute('class', 'hide');
+  choiceC.removeAttribute('class', 'hide');
+  choiceD.removeAttribute('class', 'hide');
   homeScreenSection.remove();
 });
 
@@ -46,6 +54,11 @@ startEl.addEventListener('click', function() {
 questionArea.addEventListener('click', function(event) {
   navigateQuestions(event.target.id);
   isItCorrect(event.target.id);
+});
+
+// answer event listener
+highscore.addEventListener('click', function() {
+  displayHighScores();
 });
 
 timeEl.textContent = 'Time: ' + secondsLeft ;
@@ -62,7 +75,7 @@ function setTime() {
       // Stops execution of action at set interval
       questionView.remove();
       clearInterval(timerInterval);
-      displayHighScores();
+      displayHighScoreInput();
     }
 
   }, 1000);
@@ -100,12 +113,13 @@ function navigateQuestions() {
   index++;
 }
 
-function displayHighScores() {
+function displayHighScoreInput() {
   highScoreSection.textContent = 'Your High Score: ' + secondsLeft;
   var pEl = document.createElement('p');
   var inputEl = document.createElement('input');
 
   pEl.textContent = 'Please enter your initials:';
+  pEl.setAttribute('class', 'text-success');
   inputEl.setAttribute('id', 'initials');
   submitBtnEl.textContent = 'Submit';
 
@@ -134,17 +148,17 @@ submitBtnEl.addEventListener('click', function() {
   userScores.push(userScore);
   localStorage.setItem("userScores", JSON.stringify(userScores));
 
-  displayHighscores();
-
-
+  highScoreSection.remove();
+  displayHighScores();
 });
 
 
-function displayHighscores() {
+function displayHighScores() {
   var highscoreHeader = document.createElement('h2');
   var scoreListEl = document.createElement('ol');
 
   highscoreHeader.textContent = 'All-time high Scores:';
+  highscores.appendChild(highscoreHeader);
   highscores.appendChild(scoreListEl);
 
   var allScores = JSON.parse(localStorage.getItem('userScores'));

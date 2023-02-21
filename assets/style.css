@@ -2,14 +2,41 @@ header {
   display: flex;
 }
 
+h2 {
+  font-size: 2em;
+}
+
+p {
+  margin: 0.5em 0;
+}
+
 .time {
   margin-left: auto;
 }
 
-.homescreen {
-  margin-top: 1em;
+.homepage {
+  display: flex;
+  justify-content: center;
 }
 
-.questionview {
-  margin-top: 1em;
+h2 {
+  text-align: center;
+}
+
+section {
+  margin: 2em auto;
+  width: 50%;
+}
+
+#questionarea {
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  margin: 0.5em; 
+}
+
+.hide {
+  display: none;
 }

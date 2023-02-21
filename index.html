@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="./assets/reset.css">
   <link rel="stylesheet" href="./assets/style.css">
   <title>Code Quiz</title>
@@ -11,25 +12,23 @@
 <body>
   <!-- countdown timer displayed here -->
   <header>
-    <h1 class="highscore">VIEW HIGHSCORES</h1>
+    <h1 id="highscore">VIEW HIGHSCORES</h1>
     <h1 class="time" style="text-align:right;"></h1>
   </header>
 
   <section id="homescreen">
     <h2>Javascript Code Quiz</h2>
     <p>This timed multiple choice quiz will test your knowledge of Javascript.</p>
-    <div class="startTimer">
-      <button id="startButton">Start</button>
-    </div>
+    <button class="btn btn-block btn-info" id="startButton">Start</button>
   </section>
 
   <section id="questionview">
     <h2 id="question"></h2>
     <ul id="questionarea">
-      <button id="choiceA"><li></li></button>
-      <button id="choiceB"><li></li></button>
-      <button id="choiceC"><li></li></button>
-      <button id="choiceD"><li></li></button>
+      <button class="hide" id="choiceA"><li></li></button>
+      <button class="hide" id="choiceB"><li></li></button>
+      <button class="hide" id="choiceC"><li></li></button>
+      <button class="hide" id="choiceD"><li></li></button>
     </ul>
   </section>
   
@@ -39,7 +38,7 @@
   <section id="highscores"></section>
 
 
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   <script src="./assets/script.js"></script>
 </body>
 </html>
