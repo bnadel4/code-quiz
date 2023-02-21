@@ -6,6 +6,7 @@ var questionArea = document.querySelector('#questionarea');
 var questionView = document.querySelector('#questionview');
 var homeScreenSection = document.querySelector('#homescreen');
 var highScoreSection = document.querySelector('#highscoreinput');
+var highscores = document.querySelector('#highscores');
 var secondsLeft = 20;
 var currentQuestion;
 var index = 1;
@@ -133,7 +134,33 @@ submitBtnEl.addEventListener('click', function() {
   userScores.push(userScore);
   localStorage.setItem("userScores", JSON.stringify(userScores));
 
+  displayHighscores();
+
+
 });
+
+
+function displayHighscores() {
+  var highscoreHeader = document.createElement('h2');
+  var scoreListEl = document.createElement('ol');
+
+  highscoreHeader.textContent = 'All-time high Scores:';
+  highscores.appendChild(scoreListEl);
+
+  var allScores = JSON.parse(localStorage.getItem('userScores'));
+  
+  allScores.sort((a, b) => b.time - a.time);
+
+  for (var i = 0; i < allScores.length; i++) {
+    console.log('allScores', allScores);
+  var userScoreEl = document.createElement('li');
+  userScoreEl.textContent = allScores[i].name + ' - ' + allScores[i].time;
+  highscores.appendChild(userScoreEl);
+  }
+} 
+// create ul with id score list
+
+
 
 
 
