@@ -37,7 +37,7 @@ var question2 = {
 var questions = [question1, question2];
 
 
-// event listeners
+// ----------------------event listeners-------------------------------------
 startEl.addEventListener('click', function() {
   setTime();
 
@@ -53,7 +53,6 @@ startEl.addEventListener('click', function() {
   choiceD.removeAttribute('class', 'hide');
   homeScreenSection.remove();
 });
-
 
 questionArea.addEventListener('click', function(event) {
   navigateQuestions(event.target.id);
@@ -85,6 +84,19 @@ submitBtnEl.addEventListener('click', function() {
   highScoreSection.remove();
   displayHighScores();
 });
+
+goBackButton.addEventListener('click', function() {
+  window.location.reload();
+});
+
+clearHighScores.addEventListener('click', function() {
+  // clear local storage
+  localStorage.removeItem('userScores');
+  displayHighScores();
+});
+
+// ---------------------------------------------------------------------------
+
 
 timeEl.textContent = 'Time: ' + secondsLeft ;
 
@@ -165,14 +177,18 @@ function displayHighScores() {
   highscores.appendChild(scoreListEl);
 
   var allScores = JSON.parse(localStorage.getItem('userScores'));
-  
-  allScores.sort((a, b) => b.time - a.time);
 
-  for (var i = 0; i < allScores.length; i++) {
-  var userScoreEl = document.createElement('li');
-  userScoreEl.textContent = allScores[i].name + ' - ' + allScores[i].time;
-  highscores.appendChild(userScoreEl);
+  if (allScores) {
+    allScores.sort((a, b) => b.time - a.time);
+
+    for (var i = 0; i < allScores.length; i++) {
+      var userScoreEl = document.createElement('li');
+      userScoreEl.textContent = allScores[i].name + ' - ' + allScores[i].time;
+      highscores.appendChild(userScoreEl);
+    }
   }
+  
+ 
 
   goBackButton.textContent = 'Go Back';
   goBackButton.setAttribute('id', 'back');
@@ -180,17 +196,7 @@ function displayHighScores() {
 
   clearHighScores.textContent = 'Clear Highscores';
   highscores.appendChild(clearHighScores);
-} 
-
-goBackButton.addEventListener('click', function() {
-  window.location.reload();
-});
-
-clearHighScores.addEventListener('click', function() {
-  // clear local storage
-  localStorage.removeItem('userScores');
-  displayHighScores();
-});
+}
 
 
 
